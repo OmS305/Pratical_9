@@ -1,16 +1,17 @@
-<project name="SimpleJavaApp" default="compile">
-    <property name="src" location="src"/>
-    <property name="build" location="build"/>
+<project name="JavaProject" basedir="." default="run">
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
 
-    <target name="init">
-        <mkdir dir="${build}"/>
+    <!-- Target to compile the Java code -->
+    <target name="compile">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}"/>
     </target>
 
-    <target name="compile" depends="init">
-        <javac srcdir="${src}" destdir="${build}"/>
-    </target>
-
+    <!-- Target to run the Java program -->
     <target name="run" depends="compile">
-        <java classname="Main" classpath="${build}"/>
+        <java classname="MainClass" classpath="${build.dir}">
+            <arg value="arg1"/>
+        </java>
     </target>
 </project>
